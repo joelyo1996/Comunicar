@@ -32,3 +32,37 @@ func _physics_process(delta):
 		move.y = 0
 		
 	move_and_slide(move)
+
+
+func _on_Arriba_pressed():
+	saltando = true
+	move.y = -salto
+	$Animationpersonaje.play("saltar")
+	yield(get_tree().create_timer(1),"timeout")
+	move.y = +salto
+	yield(get_tree().create_timer(2),"timeout")
+	salto = 300
+	saltando = false
+	pass 
+
+func _on_Izquierda_button_down():
+	move.x = -spee
+	$Animationpersonaje.play("caminar")
+	$Sprite.flip_h= true
+	$Sprite.flip_v= false
+	yield(get_tree().create_timer(2),"timeout")
+	move.x = 0
+	$Animationpersonaje.play("parado")
+	pass 
+
+
+func _on_Derecha_button_down():
+	move.x = spee
+	$Animationpersonaje.play("caminar")
+	$Sprite.flip_h= false
+	$Sprite.flip_v= false
+	
+func _on_Derecha_button_up():
+	move.x = 0
+	$Animationpersonaje.play("parado")
+	pass # Replace with function body.

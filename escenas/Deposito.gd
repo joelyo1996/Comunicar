@@ -131,3 +131,7 @@ func _on_caja_area_entered(area):
 	if area.name == "abajo":
 		con_tuerca = con_tuerca - 1
 	pass # Replace with function body.
+
+
+func _on_Arriba_pressed():
+	pass # Replace with function body.

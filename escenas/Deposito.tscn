@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://escenas/Deposito.gd" type="Script" id=1]
 [ext_resource path="res://escenas/cajatuerca.tscn" type="PackedScene" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://asset/Boton atras1_desplazamiento.png" type="Texture" id=20]
 [ext_resource path="res://asset/Boton atras2_desplazamiento.png" type="Texture" id=21]
 [ext_resource path="res://asset/Viejocortadoparajuego.png" type="Texture" id=22]
+[ext_resource path="res://asset/BotonPlaynormal.png" type="Texture" id=23]
+[ext_resource path="res://asset/BotonPlayprecionado.png" type="Texture" id=24]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Nueva animación"
@@ -546,6 +548,21 @@ font_data = ExtResource( 8 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 10, 62.018 )
 
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
 [sub_resource type="Animation" id=10]
 length = 2.0
 loop = true
@@ -560,6 +577,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "parado"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -593,9 +625,7 @@ size = 25
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 16 )
 
-[node name="Deposito" type="Node2D" groups=[
-"main",
-]]
+[node name="Deposito" type="Node2D" groups=["main"]]
 script = ExtResource( 1 )
 npc = ExtResource( 2 )
 
@@ -619,7 +649,7 @@ position = Vector2( 290.889, -89.3656 )
 texture = ExtResource( 4 )
 
 [node name="PocicionarTuercas" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.435294 )
 position = Vector2( 140.289, 512.191 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
@@ -639,7 +669,7 @@ position = Vector2( 811.782, -107.664 )
 texture = ExtResource( 4 )
 
 [node name="pocicionarTornillo" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.490196 )
 position = Vector2( 892.039, 511.118 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
@@ -650,7 +680,6 @@ texture = ExtResource( 6 )
 shape = SubResource( 6 )
 
 [node name="RigidBody2D" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 502.958, 592.882 )
 __meta__ = {
 "_edit_group_": true
@@ -664,7 +693,6 @@ visible = false
 texture = ExtResource( 7 )
 
 [node name="RigidBody2D2" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( -16.4856, 74.8096 )
 rotation = 1.5708
 __meta__ = {
@@ -679,7 +707,6 @@ visible = false
 texture = ExtResource( 7 )
 
 [node name="RigidBody2D3" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 1046.85, 58.905 )
 rotation = 1.5708
 __meta__ = {
@@ -694,7 +721,7 @@ visible = false
 texture = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 0.0117647, 0.854902, 0.988235 )
 margin_left = 924.943
 margin_top = 16.2022
 margin_right = 990.943
@@ -705,7 +732,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 0.921569, 1, 0, 1 )
 margin_left = 37.8288
 margin_top = 13.4833
 margin_right = 103.829
@@ -800,11 +827,13 @@ shape = SubResource( 9 )
 position = Vector2( -3.34033, -21.4545 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 13 )
-vframes = 2
 hframes = 4
+vframes = 2
 
 [node name="Animationpersonaje" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/RESET = SubResource( 16 )
 anims/caminar = SubResource( 10 )
+anims/parado = SubResource( 17 )
 anims/saltar = SubResource( 11 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -814,7 +843,6 @@ stream = ExtResource( 14 )
 stream = ExtResource( 15 )
 
 [node name="tiempo" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 387.245
 margin_top = 16.0
 margin_right = 478.245
@@ -823,7 +851,6 @@ custom_fonts/font = SubResource( 12 )
 text = "Tiempo"
 
 [node name="Tuercas" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 84.069
 margin_top = 11.1345
 margin_right = 198.069
@@ -833,7 +860,6 @@ text = "Tuercas
 "
 
 [node name="tornillos" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 783.233
 margin_top = 15.0115
 margin_right = 917.233
@@ -849,7 +875,7 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 17 )
 
 [node name="CuadroInfo2" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.00963354 )
 position = Vector2( 514.002, 299.273 )
 scale = Vector2( 0.734409, 0.625893 )
 texture = ExtResource( 18 )
@@ -894,7 +920,7 @@ custom_fonts/font = SubResource( 14 )
 text = "¡Cuidado Abajo!"
 
 [node name="Titulo2" type="Label" parent="."]
-modulate = Color( 0, 0, 0, 0 )
+modulate = Color( 0, 0, 0, 0.00963354 )
 margin_left = 336.763
 margin_top = 176.19
 margin_right = 622.763
@@ -903,7 +929,7 @@ custom_fonts/font = SubResource( 14 )
 text = "¡BUen trabajo!"
 
 [node name="Titulo3" type="Label" parent="."]
-modulate = Color( 0, 0, 0, 0 )
+modulate = Color( 0, 0, 0, 0.00963556 )
 margin_left = 323.079
 margin_top = 327.769
 margin_right = 631.079
@@ -927,23 +953,61 @@ rect_scale = Vector2( 0.3, 0.3 )
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 21 )
 
-[node name="crono" type="Label" parent="." groups=[
-"tiempo",
-]]
-modulate = Color( 1, 1, 1, 0 )
-margin_left = 198.501
-margin_top = 86.6815
-margin_right = 238.501
-margin_bottom = 113.681
+[node name="crono" type="Label" parent="." groups=["tiempo"]]
+modulate = Color( 0, 0, 0, 0 )
+margin_left = 485.578
+margin_top = 16.0
+margin_right = 525.578
+margin_bottom = 42.9995
 custom_fonts/font = SubResource( 15 )
 
 [node name="Timer" type="Timer" parent="crono"]
 
 [node name="viejo" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.00989995 )
 position = Vector2( 161.004, 318.306 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 22 )
+
+[node name="Derecha" type="TextureButton" parent="."]
+margin_left = 96.0
+margin_top = 464.0
+margin_right = 572.0
+margin_bottom = 878.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 24 )
+
+[node name="Izquierda" type="TextureButton" parent="."]
+margin_left = -21.0
+margin_top = 464.0
+margin_right = 455.0
+margin_bottom = 878.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 24 )
+flip_h = true
+
+[node name="Arriba" type="TextureButton" parent="."]
+margin_left = 794.0
+margin_top = 602.0
+margin_right = 1270.0
+margin_bottom = 1016.0
+rect_rotation = 270.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 24 )
+
+[node name="Abajo" type="TextureButton" parent="."]
+margin_left = 1025.0
+margin_top = 446.0
+margin_right = 1501.0
+margin_bottom = 860.0
+rect_rotation = 90.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 24 )
+
 [connection signal="area_entered" from="PocicionarTuercas/caja" to="." method="_on_caja_area_entered"]
 [connection signal="area_entered" from="pocicionarTornillo/AreapocicionarTornillo" to="." method="_on_AreapocicionarTornillo_area_entered"]
 [connection signal="timeout" from="Position2D/Timer" to="Position2D" method="_on_Timer_timeout"]
@@ -958,3 +1022,7 @@ texture = ExtResource( 22 )
 [connection signal="timeout" from="Position9/Timer" to="Position9" method="_on_Timer_timeout"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="timeout" from="crono/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_down" from="Derecha" to="KinematicBody2D" method="_on_Derecha_button_down"]
+[connection signal="button_up" from="Derecha" to="KinematicBody2D" method="_on_Derecha_button_up"]
+[connection signal="button_down" from="Izquierda" to="KinematicBody2D" method="_on_Izquierda_button_down"]
+[connection signal="pressed" from="Arriba" to="KinematicBody2D" method="_on_Arriba_pressed"]
