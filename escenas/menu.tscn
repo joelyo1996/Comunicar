@@ -241,6 +241,7 @@ margin_left = -17.0
 margin_top = -4.0
 margin_right = 1024.0
 margin_bottom = 615.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="play" type="Button" parent="."]
 visible = false
@@ -384,6 +385,7 @@ autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="fondo/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="fondo/sonido" to="." method="_on_sonido_pressed"]

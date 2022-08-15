@@ -1025,4 +1025,5 @@ texture_pressed = ExtResource( 24 )
 [connection signal="button_down" from="Derecha" to="KinematicBody2D" method="_on_Derecha_button_down"]
 [connection signal="button_up" from="Derecha" to="KinematicBody2D" method="_on_Derecha_button_up"]
 [connection signal="button_down" from="Izquierda" to="KinematicBody2D" method="_on_Izquierda_button_down"]
+[connection signal="button_up" from="Izquierda" to="KinematicBody2D" method="_on_Izquierda_button_up"]
 [connection signal="pressed" from="Arriba" to="KinematicBody2D" method="_on_Arriba_pressed"]

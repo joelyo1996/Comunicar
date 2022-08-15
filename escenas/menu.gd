@@ -29,7 +29,7 @@ func _on_play_pressed():
 	$AudioStreamPlayer2.stop()
 	$fondo/play.disabled = true
 	$AnimationPlayer.play("play")
-	yield(get_tree().create_timer(3),"timeout")
+	yield(get_tree().create_timer(2),"timeout")
 	get_tree().change_scene("res://escenas/mapa.tscn")
 	
 

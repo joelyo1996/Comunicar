@@ -50,11 +50,6 @@ func _on_Izquierda_button_down():
 	$Animationpersonaje.play("caminar")
 	$Sprite.flip_h= true
 	$Sprite.flip_v= false
-	yield(get_tree().create_timer(2),"timeout")
-	move.x = 0
-	$Animationpersonaje.play("parado")
-	pass 
-
 
 func _on_Derecha_button_down():
 	move.x = spee
@@ -65,4 +60,9 @@ func _on_Derecha_button_down():
 func _on_Derecha_button_up():
 	move.x = 0
 	$Animationpersonaje.play("parado")
-	pass # Replace with function body.
+	pass 
+
+func _on_Izquierda_button_up():
+	move.x = 0
+	$Animationpersonaje.play("parado")
+	pass 
